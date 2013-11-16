@@ -1,0 +1,38 @@
+upstream <%= @name %> {
+  server unix:///var/www/<%= @name %>/shared/sockets/puma.sock;
+  }
+
+<% if @ssl %>
+server {
+  listen 80;
+  server_name <%= url %>;
+  rewrite ^ https://$host$request_uri permanent;
+}
+<% end %>
+
+server {
+<% if @ssl %>
+  listen 443;
+  ssl on;
+<% else %>
+  listen <%= @port %>;
+<% end %>
+  server_name www.<%= @url %>;
+  rewrite ^(.*)$ $scheme://<%= @url %>$1;
+  root <%= @root %>;
+
+  location / {
+    proxy_pass http://<%= @name %>;
+    proxy_set_header Host $host;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+  }
+
+  location ~* ^/assets/ {
+    expires 1y;
+    add_header Cache-Control public;
+
+    add_header Last-Modified "";
+    add_header ETag "";
+    break;
+  }
+}

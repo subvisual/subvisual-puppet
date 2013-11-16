@@ -1,0 +1,10 @@
+<%= @rails_env %>:
+  adapter: postgresql
+  host: localhost
+  encoding: unicode
+  database: <% @name %>
+  pool: 16
+  timeout: 5000
+  username: <%= @name %>
+  password: <%= @db_pass %>
+
