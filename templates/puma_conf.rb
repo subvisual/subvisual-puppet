@@ -2,8 +2,9 @@
 # MANAGED BY PUPPET
 
 name = "<%= @name %>"
-path = "/run/deploy/#{name}/shared/sockets"
+path = "/var/www/#{name}/shared/sockets"
 environment "<%= @env %>"
+quiet
 
 threads <%= @min_threads %>, <%= @max_threads %>
 
