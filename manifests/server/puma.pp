@@ -5,8 +5,8 @@ define gb::server::puma (
   $port = 80,
   $ssl  = false,
   $env  = "production",
-  $threads_min = 1,
-  $threads_max = 2
+  $min_threads = 1,
+  $max_threads = 2
 ) {
 
   file { "/etc/nginx/conf.d/${name}.conf":
