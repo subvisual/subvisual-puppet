@@ -23,7 +23,4 @@ define gb::server::puma (
     mode    => 0644,
     content => template('gb/puma_conf.rb'),
   }
-  monit::monitor { "${name}/puma":
-    pidfile => "${$sockets_root}/puma.pid",
-  }
 }
