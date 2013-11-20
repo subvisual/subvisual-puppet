@@ -1,11 +1,16 @@
 upstream <%= @name %> {
   server unix:///var/www/<%= @name %>/shared/sockets/puma.sock;
-  }
+}
+
+server {
+  server_name www.<%= @url %>;
+  return 301 $scheme://<%= @url %>$request_uri
+}
 
 <% if @ssl %>
 server {
   listen 80;
-  server_name <%= url %>;
+  server_name <%= @url %>;
   rewrite ^ https://$host$request_uri permanent;
 }
 <% end %>
@@ -17,8 +22,7 @@ server {
 <% else %>
   listen <%= @port %>;
 <% end %>
-  server_name www.<%= @url %>;
-  rewrite ^(.*)$ $scheme://<%= @url %>$1;
+  server_name <%= @url %>;
   root <%= @root %>;
 
   location / {
