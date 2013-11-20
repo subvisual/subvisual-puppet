@@ -13,6 +13,10 @@ class gb {
     ensure => installed,
   }
 
+  package { 'monit':
+    ensure => installed,
+  }
+
   # deploy directory
   file { '/var/www':
     ensure => directory,

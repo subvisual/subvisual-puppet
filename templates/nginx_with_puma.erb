@@ -23,7 +23,7 @@ server {
   listen <%= @port %>;
 <% end %>
   server_name <%= @url %>;
-  root <%= @root %>;
+  root <%= @public_root %>;
 
   location / {
     proxy_pass http://<%= @name %>;

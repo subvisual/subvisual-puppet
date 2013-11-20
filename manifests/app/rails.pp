@@ -1,7 +1,6 @@
 define gb::app::rails (
   $rails_env = 'production',
   $db_pass   = undef,
-  $server    = 'puma',
   $url       = undef,
   $port      = 80,
   $ssl       = false,
@@ -9,9 +8,29 @@ define gb::app::rails (
   $max_threads = 2,
 ) {
 
+  #
+  # VARS
+  #
   $capistrano_root = "/var/www/${name}"
+  $app_root        = "${capistrano_root}/current"
+  $shared_root     = "${capistrano_root}/shared"
+  $public_root     = "${capistrano_root}/current/public"
+  $sockets_root    = "${capistrano_root}/shared/sockets"
+  $config_root     = "${capistrano_root}/shared/config"
+
+  $nginx_conf    = "/etc/nginx/conf.d/${name}.conf"
+  $pidfile       = "${sockets_root}/puma.pid"
+  $puma_conf     = "${sockets_root}/puma_conf.rb"
+  $puma_state    = "${sockets_root}/puma.state"
+  $monit_name    = "${name}-puma"
+  $start_command = "cd ${app_root} && bundle exec puma -C ${puma_conf}"
+  $stop_command  = "cd ${app_root} && bundle_exec pumactl -S ${puma_state} stop"
+
   $db_yml = "${capistrano_root}/shared/config/database.yml"
 
+  #
+  # DATABASE
+  #
   # database role
   postgresql::server::role { $name:
     password_hash => postgresql_password($name, $db_pass),
@@ -22,8 +41,11 @@ define gb::app::rails (
     password => postgresql_password($name, $db_pass),
   }
 
+  #
+  # DATABASE.YML
+  #
   # shared/config/database.yml
-  file { [$capistrano_root, "${capistrano_root}/shared", "${capistrano_root}/shared/config", "${capistrano_root}/shared/sockets" ]:
+  file { [$capistrano_root, $shared_root, $config_root, $sockets_root]:
     ensure => directory,
     owner  => 'deploy',
     group  => 'deploy',
@@ -36,21 +58,29 @@ define gb::app::rails (
     notify  => Service[nginx],
   }
 
-  # web server
-  case $server {
-    puma: { gb::server::puma { $name:
-        root         => "${capistrano_root}/current/public",
-        sockets_root => "${capistrano_root}/shared/sockets",
-        port         => $port,
-        url          => $url,
-        env          => $rails_env,
-        min_threads  => $min_threads,
-        max_threads  => $max_threads,
-        require      => File["${capistrano_root}/shared/sockets"]
-      }
-    }
+  #
+  # NGINX
+  #
+  file { $nginx_conf:
+    owner   => 'root',
+    group   => 'root',
+    mode    => 0644,
+    content => template('gb/nginx_with_puma.erb'),
+    notify  => Service[nginx],
+  }
 
-    undef:   { notice("No server defined for app ${name}") }
-    default: { fail("Server ${server} not supported") }
+  #
+  # PUMA
+  #
+  file { $puma_conf:
+    owner   => 'deploy',
+    group   => 'deploy',
+    mode    => 0644,
+    content => template('gb/puma_conf.rb'),
+  }
+
+  file { "/etc/monit/conf.d/${monit_name}.conf":
+    content => template('gb/monit.conf.erb'),
+    require => Package['monit'],
   }
 }
