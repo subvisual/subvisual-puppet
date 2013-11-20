@@ -5,6 +5,8 @@ define gb::app::rails (
   $url       = undef,
   $port      = 80,
   $ssl       = false,
+  $min_threads = 1,
+  $max_threads = 2,
 ) {
 
   $capistrano_root = "/var/www/${name}"
@@ -37,10 +39,14 @@ define gb::app::rails (
   # web server
   case $server {
     puma: { gb::server::puma { $name:
-        root    => "${capistrano_root}/current/public",
-        port    => $port,
-        url     => $url,
-        require => File["${capistrano_root}/shared/sockets"]
+        root         => "${capistrano_root}/current/public",
+        sockets_root => "${capistrano_root}/shared/sockets",
+        port         => $port,
+        url          => $url,
+        env          => $rails_env,
+        min_threads  => $min_threads,
+        max_threads  => $max_threads,
+        require      => File["${capistrano_root}/shared/sockets"]
       }
     }
 

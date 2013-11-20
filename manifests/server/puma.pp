@@ -1,8 +1,12 @@
 define gb::server::puma (
   $root = undef,
+  $sockets_root = undef,
   $url  = undef,
   $port = 80,
   $ssl  = false,
+  $env  = "production",
+  $threads_min = 1,
+  $threads_max = 2
 ) {
 
   file { "/etc/nginx/conf.d/${name}.conf":
@@ -13,12 +17,13 @@ define gb::server::puma (
     notify  => Service[nginx],
   }
 
-  file { "/run/deploy/${name}":
-    ensure  => directory,
+  file { "${sockets_root}/puma_conf.rb":
     owner   => 'deploy',
     group   => 'deploy',
     mode    => 0644,
-    require => File['/run/deploy'],
+    content => template('gb/puma_conf.rb'),
   }
-
+  monit::monitor { "${name}/puma":
+    pidfile => "${$sockets_root}/puma.pid",
+  }
 }

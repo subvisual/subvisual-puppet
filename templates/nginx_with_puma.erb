@@ -1,10 +1,10 @@
 upstream <%= @name %> {
-  server unix:///var/www/<%= @name %>/shared/sockets/puma.sock;
+server unix:///var/www/<%= @name %>/shared/sockets/puma.sock;
 }
 
 server {
   server_name www.<%= @url %>;
-  return 301 $scheme://<%= @url %>$request_uri
+  return 301 $scheme://<%= @url %>$request_uri;
 }
 
 <% if @ssl %>

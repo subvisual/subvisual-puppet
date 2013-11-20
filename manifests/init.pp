@@ -8,6 +8,7 @@ class gb {
   # required packages
   include nginx
   include nodejs
+  include monit
   class { postgresql::server: }
   package { 'libpq-dev':
     ensure => installed,
@@ -35,5 +36,9 @@ class gb {
     owner  => 'deploy',
     group  => 'deploy',
     mode   => 0644,
+  }
+
+  monit::monitor { 'ssh':
+    pidfile => '/var/run/sshd.pid',
   }
 }
