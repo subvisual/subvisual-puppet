@@ -23,8 +23,8 @@ define gb::app::rails (
   $puma_conf     = "${sockets_root}/puma_conf.rb"
   $puma_state    = "${sockets_root}/puma.state"
   $monit_name    = "${name}-puma"
-  $bundle_exec   = "/usr/local/rvm/bin/monit_bundle"
-  $start_command = "cd ${app_root} && ${bundle_exec} exec puma -C ${puma_conf}"
+  $bundle_exec   = "/usr/local/rvm/bin/monit_bundle exec"
+  $start_command = "cd ${app_root} && ${bundle_exec} puma -C ${puma_conf}"
   $stop_command  = "cd ${app_root} && ${bundle_exec} pumactl -S ${puma_state} stop"
 
   $db_yml = "${capistrano_root}/shared/config/database.yml"
