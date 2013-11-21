@@ -1,4 +1,4 @@
-class gb::rvm ($ruby_version=undef, $rvm_version=undef) {
+class gb::ruby ($version=undef) {
 
   stage { 'req-install':
     before => Stage['main'],
@@ -21,33 +21,33 @@ class gb::rvm ($ruby_version=undef, $rvm_version=undef) {
   #rvm::system_user { 'deploy': }
   rvm::define::user { 'deploy': }
 
-  rvm::define::version { $ruby_version:
+  rvm::define::version { $version:
     ensure => present,
     system => true,
   }
-  #rvm_system_ruby { $ruby_version:
+  #rvm_system_ruby { $version:
     #ensure      => present,
     #default_use => true,
   #}
 
   #rvm_gem {
     #'bundler':
-      #ruby_version => $ruby_version,
+      #version => $version,
       #ensure       => present,
-      #require      => Rvm_system_ruby[$ruby_version];
+      #require      => Rvm_system_ruby[$version];
     #'puppet':
-      #ruby_version => $ruby_version,
+      #version => $version,
       #ensure       => present,
-      #require      => Rvm_system_ruby[$ruby_version];
+      #require      => Rvm_system_ruby[$version];
   #}
 
   rvm::define::gem {
     'bundler':
       ensure       => present,
-      ruby_version => $ruby_version;
+      version => $version;
     'puppet':
       ensure       => present,
-      ruby_version => $ruby_version;
+      version => $version;
   }
 
   file { '/etc/puppet/hiera.yaml':

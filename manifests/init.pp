@@ -5,8 +5,8 @@ class gb (
   gb::user { 'deploy': }
   gb::public_keys { 'deploy': }
 
-  class { 'gb::rvm':
-    ruby_version => $ruby_version,
+  class { 'gb::ruby':
+    version => $ruby_version,
   }
 
   class { 'gb::monit':
