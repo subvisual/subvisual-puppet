@@ -1,7 +1,7 @@
 class gb::rvm_install ($ruby_version=undef, $rvm_version=undef) {
 
   stage { 'req-install':
-    before => Stage['rvm-install'],
+    before => Stage['main'],
   }
 
   class requirements {
@@ -12,10 +12,6 @@ class gb::rvm_install ($ruby_version=undef, $rvm_version=undef) {
 
   class { requirements:
     stage => 'req-install',
-  }
-
-  class { rvm:
-    version => $rvm_version,
   }
 
   group { 'rvm':
