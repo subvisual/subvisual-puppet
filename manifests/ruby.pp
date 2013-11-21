@@ -1,5 +1,7 @@
 class gb::ruby ($version=undef) {
 
+  include rvm
+
   stage { 'req-install':
     before => Stage['main'],
   }
