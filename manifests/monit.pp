@@ -2,6 +2,10 @@ class gb::monit (
   $ruby_version = undef,
 ) {
 
+  package { 'monit':
+    ensure => installed,
+  }
+  ->
   service { 'monit':
     ensure => running,
   }
