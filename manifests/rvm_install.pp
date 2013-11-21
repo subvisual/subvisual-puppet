@@ -18,22 +18,40 @@ class gb::rvm_install ($ruby_version=undef, $rvm_version=undef) {
     version => $rvm_version,
   }
 
-  rvm::system_user { 'deploy': }
-
-  rvm_system_ruby { $ruby_version:
-    ensure      => present,
-    default_use => true,
+  group { 'rvm':
+    ensure => present,
   }
 
-  rvm_gem {
+  #rvm::system_user { 'deploy': }
+  rvm::define::user { 'deploy': }
+
+  rvm::define::version { $ruby_version:
+    ensure => present,
+    system => true,
+  }
+  #rvm_system_ruby { $ruby_version:
+    #ensure      => present,
+    #default_use => true,
+  #}
+
+  #rvm_gem {
+    #'bundler':
+      #ruby_version => $ruby_version,
+      #ensure       => present,
+      #require      => Rvm_system_ruby[$ruby_version];
+    #'puppet':
+      #ruby_version => $ruby_version,
+      #ensure       => present,
+      #require      => Rvm_system_ruby[$ruby_version];
+  #}
+
+  rvm::define::gem {
     'bundler':
-      ruby_version => $ruby_version,
       ensure       => present,
-      require      => Rvm_system_ruby[$ruby_version];
+      ruby_version => $ruby_version;
     'puppet':
-      ruby_version => $ruby_version,
       ensure       => present,
-      require      => Rvm_system_ruby[$ruby_version];
+      ruby_version => $ruby_version;
   }
 
   file { '/etc/puppet/hiera.yaml':

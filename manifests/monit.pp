@@ -1,4 +1,5 @@
 class gb::monit {
+
   service { 'monit':
     ensure => running,
   }
