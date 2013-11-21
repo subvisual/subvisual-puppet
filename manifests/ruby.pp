@@ -44,10 +44,10 @@ class gb::ruby ($version=undef) {
   rvm::define::gem {
     'bundler':
       ensure       => present,
-      version => $version;
+      ruby_version => $version;
     'puppet':
       ensure       => present,
-      version => $version;
+      ruby_version => $version;
   }
 
   file { '/etc/puppet/hiera.yaml':
