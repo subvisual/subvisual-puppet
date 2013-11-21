@@ -1,19 +1,14 @@
 class gb {
-  #include gb::sshd_config
-
   # deploy user
   gb::user { 'deploy': }
   gb::public_keys { 'deploy': }
+  class { 'gb::monit': }
 
   # required packages
   include nginx
   include nodejs
   class { postgresql::server: }
   package { 'libpq-dev':
-    ensure => installed,
-  }
-
-  package { 'monit':
     ensure => installed,
   }
 
