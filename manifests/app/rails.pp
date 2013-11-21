@@ -77,7 +77,7 @@ define gb::app::rails (
     owner   => 'deploy',
     group   => 'deploy',
     mode    => 0644,
-    content => template('gb/puma_conf.rb'),
+    content => template('gb/puma_conf.rb.erb'),
   }
 
   file { "/etc/monit/conf.d/${monit_name}.conf":

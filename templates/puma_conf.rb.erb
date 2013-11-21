@@ -3,7 +3,7 @@
 
 name = "<%= @name %>"
 path = "/var/www/#{name}/shared/sockets"
-environment "<%= @env %>"
+environment "<%= @rails_env %>"
 quiet
 
 threads <%= @min_threads %>, <%= @max_threads %>
