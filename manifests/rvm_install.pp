@@ -1,4 +1,4 @@
-class gb::rvm_install ($ruby_version=undef, $rvm_version=undef) {
+class gb::rvm ($ruby_version=undef, $rvm_version=undef) {
 
   stage { 'req-install':
     before => Stage['main'],

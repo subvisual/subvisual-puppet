@@ -1,8 +1,17 @@
-class gb {
+class gb (
+  $ruby_version = undef,
+) {
   # deploy user
   gb::user { 'deploy': }
   gb::public_keys { 'deploy': }
-  class { 'gb::monit': }
+
+  class { 'gb::rvm':
+    ruby_version => $ruby_version,
+  }
+
+  class { 'gb::monit':
+    ruby_version => $ruby_version,
+  }
 
   # required packages
   include nginx
