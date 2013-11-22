@@ -20,7 +20,6 @@ class gb::ruby ($version=undef) {
   group { 'rvm':
     ensure => present,
   }
-  #rvm::system_user { deploy: }
   rvm::define::user { 'deploy': }
 
   # install specified ruby version
@@ -28,21 +27,12 @@ class gb::ruby ($version=undef) {
     ensure => present,
     system => 'true',
   }
-  #rvm_system_ruby { $version:
-    #ensure      => present,
-    #default_use => true,
-  #}
 
   # install bundler and puppet
   rvm::define::gem {
     'bundler':
       ensure       => present,
       ruby_version => $version;
-  }
-
-  # unused file, but required to prevent error
-  file { '/etc/puppet/hiera.yaml':
-    ensure => present,
   }
 
 }
