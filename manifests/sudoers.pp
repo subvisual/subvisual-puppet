@@ -1,4 +1,4 @@
-class gb::sudo {
+class gb::sudoers {
   include sudo
 
   sudo::conf { 'admins':
