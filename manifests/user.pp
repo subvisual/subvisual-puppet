@@ -9,7 +9,7 @@ define gb::user ($password) {
   user { $name:
     ensure     => present,
     home       => "/home/$name",
-    password   => "$6$${password_hash}",
+    password   => "\$6\$${password_hash}",
     groups     => ['deploy', 'sudo'],
     shell      => '/bin/bash',
     managehome => true,
