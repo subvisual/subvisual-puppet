@@ -22,6 +22,7 @@ class gb::monit (
     ensure  => present,
     content => template('gb/monitrc.d/http.conf'),
     require => Package['monit'],
+    notify  => Service['monit'],
   }
 }
 
