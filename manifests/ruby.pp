@@ -23,7 +23,7 @@ class gb::ruby ($version=undef) {
   #rvm::system_user { deploy: }
   rvm::define::user { 'deploy': }
 
-   install specified ruby version
+  # install specified ruby version
   rvm::define::version { $version:
     ensure => present,
     system => 'true',

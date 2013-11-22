@@ -14,8 +14,8 @@ define gb::public_keys {
 
   # defaults
   File {
-    owner => $name
-    group => $name
+    owner => $name,
+    group => $name,
   }
 
   # install base scripts dir and ~/.ssh dir
