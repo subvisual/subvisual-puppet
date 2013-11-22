@@ -2,7 +2,7 @@ class gb (
   $ruby_version = undef,
 ) {
   # deploy user
-  include sudo
+  include gb::sudo
   gb::user { 'deploy': }
   gb::public_keys { 'deploy': }
 

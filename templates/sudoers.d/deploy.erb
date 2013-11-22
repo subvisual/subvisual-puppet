@@ -1,0 +1,5 @@
+# ensure deploy group can run comands required for deploy management
+
+Cmnd_Alias DEPOY_CMDS = /usr/bin/monit
+
+%deploy ALL=NOPASSWD:DEPLOY_CMDS
