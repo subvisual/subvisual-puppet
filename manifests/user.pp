@@ -1,4 +1,4 @@
-define gb::user {
+define gb::user ($password) {
   group { 'deploy':
     ensure => present,
   }
@@ -6,7 +6,8 @@ define gb::user {
   user { $name:
     ensure     => present,
     home       => "/home/$name",
-    groups     => ['deploy'],
+    password   => sha1($password),
+    groups     => ['deploy', 'sudo'],
     shell      => '/bin/bash',
     managehome => true,
   }

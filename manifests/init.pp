@@ -1,9 +1,12 @@
 class gb (
   $ruby_version = undef,
+  $deploy_passwd = undef,
 ) {
   # deploy user
   include gb::sudoers
-  gb::user { 'deploy': }
+  gb::user { 'deploy':
+    password => $deploy_passwd,
+  }
   gb::public_keys { 'deploy': }
 
   class { 'gb::ruby':
