@@ -82,6 +82,6 @@ define gb::app::rails (
 
   file { "/etc/monit/conf.d/${monit_name}.conf":
     content => template('gb/monit.conf.erb'),
-    require => Package['monit'],
+    notify  => Service['monit'],
   }
 }
