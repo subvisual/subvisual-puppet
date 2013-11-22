@@ -37,10 +37,12 @@ class gb::ruby ($version=undef) {
   rvm::define::gem {
     'bundler':
       ensure       => present,
-      ruby_version => $version;
+      ruby_version => $version,
+      gemset       => 'global';
     'puppet':
       ensure       => present,
-      ruby_version => $version;
+      ruby_version => $version,
+      gemset       => 'global';
   }
 
   # unused file, but required to prevent error
