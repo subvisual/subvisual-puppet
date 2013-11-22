@@ -12,8 +12,16 @@ class gb::monit (
   package { 'monit':
     ensure => installed,
   }
-  ->
+  
   service { 'monit':
-    ensure => running,
+    ensure  => running,
+    require => Package['monit'],
+  }
+
+  file { '/etc/monit/conf.d/http.conf':
+    ensure  => present,
+    content => template('gb/monitrc.d/http.conf'),
+    require => Package['monit'],
   }
 }
+
