@@ -16,6 +16,10 @@ class gb::ruby ($version=undef) {
     stage => 'req-install',
   }
 
+  package { ['imagemagick', 'libmagickcore-dev', 'libmagickwand-dev']:
+    ensure => installed
+  }
+
   # deploy user must belong to the rvm group
   group { 'rvm':
     ensure => present,

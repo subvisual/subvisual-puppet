@@ -12,7 +12,7 @@ class gb::monit (
   package { 'monit':
     ensure => installed,
   }
-  
+
   service { 'monit':
     ensure  => running,
     require => Package['monit'],
