@@ -1,11 +1,9 @@
 define gb::public_keys {
 
-  # install git
-  include git
-
   $home         = "/home/${name}"
   $scripts_path = "${home}/scripts/puppet"
   $repo_path    = "${scripts_path}/public-keys"
+  $repo_url     = 'git://github.com/groupbuddies/public-keys.git'
 
   $script_name    = 'generate-authorized_keys.rb'
   $script         = "${scripts_path}/${script_name}"
@@ -32,13 +30,12 @@ define gb::public_keys {
   }
 
   # clone public-keys repo
-  git::repo { $repo_path:
-    path    => $repo_path,
-    source  => 'git://github.com/groupbuddies/public-keys.git',
-    branch  => 'master',
-    update  => true,
-    require => User[$name],
-    notify  => Exec[$script],
+  vcsrepo { $repo_path:
+    ensure    => present,
+    provider  => git,
+    source    => $repo_url,
+    revision  => 'master',
+    notify    => Exec[$script],
   }
 
   # generate authorized_keys
