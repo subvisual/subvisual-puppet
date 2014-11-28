@@ -1,0 +1,21 @@
+{
+  "name": "groupbuddies-gb",
+  "version": "0.1.1",
+  "author": "Miguel Palhas",
+  "license": "MIT License",
+  "summary": "Group Buddies base Puppet module",
+  "source": "https://github.com/groupbuddies/gb-puppet/puppet-module",
+  "project_page": "https://github.com/groupbuddies/gb-puppet/puppet-module",
+  "operatingsystem_support": [
+    { "operatingsystem": "Ubuntu" }
+  ],
+  "dependencies": [
+    { "name": "puppetlabs/apt",        "version_requirement": "1.x" },
+    { "name": "jfryman/nginx",         "version_requirement": "0.x" },
+    { "name": "puppetlabs/nodejs",     "version_requirement": "0.x" },
+    { "name": "puppetlabs/postgresql", "version_requirement": "4.x" },
+    { "name": "saz/sudo",              "version_requirement": "3.x" },
+    { "name": "puppetlabs/vcsrepo",    "version_requirement": "1.x" },
+    { "name": "maestrodev/rvm",        "version_requirement": "1.x" }
+  ]
+}
