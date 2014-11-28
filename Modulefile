@@ -1,4 +1,4 @@
-name 'gb-puppet'
+name 'gb'
 version '0.0.1'
 source 'https://github.com/naps62/gb-puppet'
 author 'Miguel Palhas'
