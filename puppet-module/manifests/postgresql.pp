@@ -2,7 +2,7 @@ define gb::postgresql (
   $password,
 ) {
 
-  class { postgresql::server: }
+  include postgresql::server
   package { 'libpq-dev':
     ensure => installed,
   }

@@ -13,3 +13,4 @@ fi
 
 sudo apt-get update
 sudo apt-get install --yes puppet
+puppet module install groupbuddies-gb --force --version 0.1.2
