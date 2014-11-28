@@ -1,3 +1,0 @@
-check process <%= @monit_name %> with pidfile <%= @pidfile %>
-  start program = "/bin/su -c '<%= @start_command %>' deploy"
-  stop program  = "/bin/su -c '<%= @stop_command %>' deploy"
