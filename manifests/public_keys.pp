@@ -10,6 +10,11 @@ define gb::public_keys {
   $script_src     = "puppet:///modules/gb/${script_name}"
   $auth_keys_file = "/home/${name}/.ssh/authorized_keys"
 
+  package { ['git', 'git-core']:
+    ensure => installed,
+    before => File[$script],
+  }
+
   # defaults
   File {
     owner => $name,

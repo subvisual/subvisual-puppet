@@ -1,5 +1,5 @@
 # ensure deploy group can run comands required for deploy management
 
-Cmnd_Alias DEPLOY_CMDS = /usr/bin/monit
+Cmnd_Alias DEPLOY_CMDS = /usr/bin/monit, /usr/sbin/service, /sbin/start, /sbin/status, /sbin/stop, /sbin/restart
 
 %deploy ALL=NOPASSWD: DEPLOY_CMDS
