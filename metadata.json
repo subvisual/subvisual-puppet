@@ -1,8 +1,9 @@
 {
   "name": "groupbuddies-gb",
   "version": "0.1.1",
-  "source": "https://github.com/groupbuddies/gb-puppet",
   "author": "Miguel Palhas <mpalhas@groupbuddies.com>",
+  "license": "MIT License",
+  "source": "https://github.com/groupbuddies/gb-puppet",
   "summary": "Group Buddies base Puppet module",
   "description": "Used to provision Group Buddies web servers",
   "project_page": "https://github.com/groupbuddies/gb-puppet",
