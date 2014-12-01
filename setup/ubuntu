@@ -3,9 +3,9 @@
 set -e
 
 DISTRO="ubuntu"
-LSB_RELEASE="trusty"
+LSB_RELEASE=$(lsb_release --codename --short)
 GB_PUPPET_VERSION="0.1.4"
-MANIFEST="https://raw.githubusercontent.com/groupbuddies/gb-puppet/master/setup/ubuntu-trusty.pp"
+MANIFEST="https://raw.githubusercontent.com/groupbuddies/gb-puppet/master/setup/ubuntu.pp"
 OUT=/dev/null
 
 DEB="puppetlabs-release-${LSB_RELEASE}.deb"
@@ -15,14 +15,17 @@ echo "Setting up $(hostname) with Group Buddies setup script ${DISTRO}-${LSB_REL
 
 if [ ! -e $DEB_PROVIDES ]; then
   wget -q http://apt.puppetlabs.com/$DEB > $OUT
-  sudo dpkg -i $DEB > $OUT
+  dpkg -i $DEB > $OUT
 fi
 
 echo "Installing puppet"
-sudo apt-get update > $OUT
-sudo apt-get install --yes puppet > $OUT
-puppet module install groupbuddies-gb --force --version $GB_PUPPET_VERSION > $OUT
+apt-get update > $OUT
+apt-get install --yes puppet > $OUT
+puppet module install groupbuddies-gb --version $GB_PUPPET_VERSION > $OUT
 
 echo "Applying deploy.pp manifest"
 curl $MANIFEST > /tmp/manifest.pp
 puppet apply /tmp/manifest.pp > $OUT
+
+echo "setting up deploy user password"
+passwd deploy
