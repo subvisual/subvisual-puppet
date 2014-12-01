@@ -22,7 +22,8 @@ define gb::ruby {
 
   rvm_gem {
     'bundler':
-      ensure       => present,
+      name         => 'bundler',
+      ensure       => latest,
       ruby_version => $name,
       require      => Rvm_system_ruby[$name],
   }
