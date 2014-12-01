@@ -4,8 +4,8 @@
   "author": "Miguel Palhas",
   "license": "MIT License",
   "summary": "Group Buddies base Puppet module",
-  "source": "https://github.com/groupbuddies/gb-puppet/puppet-module",
-  "project_page": "https://github.com/groupbuddies/gb-puppet/puppet-module",
+  "source": "https://github.com/groupbuddies/gb-puppet/tree/master/puppet-module",
+  "project_page": "https://github.com/groupbuddies/gb-puppet/tree/master/puppet-module",
   "operatingsystem_support": [
     { "operatingsystem": "Ubuntu" }
   ],
