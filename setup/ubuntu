@@ -29,5 +29,6 @@ echo "Applying deploy.pp manifest"
 curl $MANIFEST > /tmp/manifest.pp
 puppet apply /tmp/manifest.pp > $OUT
 
-echo "setting up deploy user password"
-passwd deploy
+read -s -p "Enter a password for the deploy user: " deploy_password
+echo "deploy:${deploy_password}" | chpasswd
+echo "\n"
