@@ -21,6 +21,8 @@ fi
 echo "Installing puppet"
 apt-get update > $OUT
 apt-get install --yes puppet > $OUT
+
+echo "Installing puppet module groupbuddies-gb $GB_PUPPET_VERSION"
 puppet module install groupbuddies-gb --version $GB_PUPPET_VERSION > $OUT
 
 echo "Applying deploy.pp manifest"

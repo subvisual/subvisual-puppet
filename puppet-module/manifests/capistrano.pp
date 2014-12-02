@@ -1,4 +1,4 @@
-class gb::capistrano {
+define gb::capistrano {
   file { [
       "/var/www/${name}/",
       "/var/www/${name}/shared",
