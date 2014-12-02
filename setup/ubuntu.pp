@@ -8,6 +8,9 @@ gb::public_keys { 'deploy': }
 include gb::apt_update
 include nginx
 
+# upstart config
+include gb::upstart
+
 # deploy directory
 file { '/var/www':
   ensure => directory,

@@ -1,6 +1,6 @@
 {
   "name": "groupbuddies-gb",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "author": "Miguel Palhas",
   "license": "MIT License",
   "summary": "Group Buddies base Puppet module",
