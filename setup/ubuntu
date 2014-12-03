@@ -27,7 +27,7 @@ echo "Installing puppet module groupbuddies-gb $GB_PUPPET_VERSION"
 puppet module install groupbuddies-gb --version $GB_PUPPET_VERSION > $OUT
 
 echo "Applying deploy.pp manifest"
-curl $MANIFEST > /tmp/manifest.pp
+curl -s $MANIFEST > /tmp/manifest.pp
 puppet apply /tmp/manifest.pp > $OUT
 
 read -s -p "Enter a password for the deploy user: " deploy_password
