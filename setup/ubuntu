@@ -32,4 +32,4 @@ puppet apply /tmp/manifest.pp > $OUT
 
 read -s -p "Enter a password for the deploy user: " deploy_password
 echo "deploy:${deploy_password}" | chpasswd
-echo "\n"
+echo ""
