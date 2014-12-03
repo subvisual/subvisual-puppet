@@ -7,6 +7,7 @@ LSB_RELEASE=$(lsb_release --codename --short)
 GB_PUPPET_VERSION="0.3.0"
 MANIFEST="https://raw.githubusercontent.com/groupbuddies/gb-puppet/master/setup/ubuntu.pp"
 OUT=/dev/null
+BASE_PACKAGES="git curl puppet"
 
 DEB="puppetlabs-release-${LSB_RELEASE}.deb"
 DEB_PROVIDES="/etc/apt/sources.list.d/puppetlabs.list" # Assume that this file's existence means we have Puppet Labs repo added
@@ -18,9 +19,9 @@ if [ ! -e $DEB_PROVIDES ]; then
   dpkg -i $DEB > $OUT
 fi
 
-echo "Installing puppet"
+echo "Installing base packages"
 apt-get update > $OUT
-apt-get install --yes puppet > $OUT
+apt-get install --yes $BASE_PACKAGES > $OUT
 
 echo "Installing puppet module groupbuddies-gb $GB_PUPPET_VERSION"
 puppet module install groupbuddies-gb --version $GB_PUPPET_VERSION > $OUT
