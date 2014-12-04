@@ -2,6 +2,10 @@
 
 A Puppet module and a few helper scripts to set up web servers
 
+# Puppet module
+
+The module contains common patterns to be used in puppet manifests accross different web applications. It is available on [puppet forge](https://forge.puppetlabs.com/groupbuddies/gb).
+
 # Provisioning a machine
 
 ## 1. Base provisioning
@@ -9,7 +13,9 @@ A Puppet module and a few helper scripts to set up web servers
 For the default base setup for a web server, the `ubuntu` helper script can be
 applied. To use it, SSH into a newly created machine, and run this command:
 
-    curl -s https://raw.githubusercontent.com/groupbuddies/gb-puppet/master/setup/ubuntu | bash -
+```bash
+curl -s https://raw.githubusercontent.com/groupbuddies/gb-puppet/master/setup/ubuntu | bash -
+```
 
 This will:
 
@@ -52,8 +58,9 @@ common:
 
 The `setup/app` helper script  assists with getting these files on the server and provisioning it. No SSH needed at this stage:
 
-    curl -s
-    https://raw.githubusercontent.com/groupbuddies/gb-puppet/master/setup/app | bash -
+```bash
+curl -s https://raw.githubusercontent.com/groupbuddies/gb-puppet/master/setup/app | bash -
+```
 
 The script will prompt you for a few things:
 
@@ -63,7 +70,3 @@ The script will prompt you for a few things:
 * path to the hiera data
 
 The script will upload both files to the server and apply the puppet manifest.
-
-# Puppet module
-
-The module contains common patterns to be used in puppet manifests accross different web applications. It is available on [puppet forge](https://forge.puppetlabs.com/groupbuddies/gb)
