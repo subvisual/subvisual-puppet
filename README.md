@@ -14,7 +14,9 @@ For the default base setup for a web server, the `ubuntu` helper script can be
 applied. To use it, SSH into a newly created machine, and run this command:
 
 ```bash
-curl -s https://raw.githubusercontent.com/groupbuddies/gb-puppet/master/setup/ubuntu | bash -
+curl -s https://raw.githubusercontent.com/groupbuddies/gb-puppet/master/setup/ubuntu > install
+chmod +x install
+./install
 ```
 
 This will:
