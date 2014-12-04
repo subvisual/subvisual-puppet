@@ -15,8 +15,8 @@ DEB_PROVIDES="/etc/apt/sources.list.d/puppetlabs.list" # Assume that this file's
 echo "Setting up $(hostname) with Group Buddies setup script ${DISTRO}-${LSB_RELEASE}"
 
 if [ ! -e $DEB_PROVIDES ]; then
-  wget -q http://apt.puppetlabs.com/$DEB > $OUT
-  dpkg -i $DEB > $OUT
+  wget -P /tmp -q http://apt.puppetlabs.com/$DEB > $OUT
+  dpkg -i /tmp/$DEB > $OUT
 fi
 
 echo "Installing base packages"
@@ -33,3 +33,6 @@ puppet apply /tmp/manifest.pp > $OUT
 read -s -p "Enter a password for the deploy user: " deploy_password
 echo "deploy:${deploy_password}" | chpasswd
 echo ""
+
+echo "Cleaning up"
+rm -rf /tmp/*
