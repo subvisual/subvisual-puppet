@@ -22,7 +22,7 @@ This will:
 
 ## 2. App provisioning
 
-At this step, it is assumed the machine is ready with the setup described in [base provisioning](#1.-base-provisioning).
+At this step, it is assumed the machine is ready with the setup described in [base provisioning](#1-base-provisioning).
 
 This will be app-specific. For each app, a puppet manifest and a hiera data file is needed. The later one is used to store sensitive data (and thus should not be commited to git). Here's an example for an app that uses ruby 2.1.5 and a PostgreSQL database, and is deployed with Capistrano:
 
