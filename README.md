@@ -61,7 +61,9 @@ common:
 The `setup/app` helper script  assists with getting these files on the server and provisioning it. No SSH needed at this stage:
 
 ```bash
-curl -s https://raw.githubusercontent.com/groupbuddies/gb-puppet/master/setup/app | bash -
+curl -s https://raw.githubusercontent.com/groupbuddies/gb-puppet/master/setup/app > install-app
+chmod +x install-app
+./install-app
 ```
 
 The script will prompt you for a few things:
