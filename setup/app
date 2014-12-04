@@ -31,9 +31,9 @@ hiera="
 :yaml:
   :datadir: '.'"
 
-scp -P $port $manifest $host:manifest.pp
-scp -P $port $data     $host:manifest.yaml
-ssh $host -p $port "echo \"$hiera\" > hiera.yaml"
-ssh $host -t -p $port 'sudo puppet apply manifest.pp --hiera_config=hiera.yaml'
+scp -P $port $manifest $host:/tmp/manifest.pp
+scp -P $port $data     $host:/tmp/manifest.yaml
+ssh $host -p $port "echo \"$hiera\" > /tmp/hiera.yaml"
+ssh $host -t -p $port 'sudo puppet apply /tmp/manifest.pp --hiera_config=/tmp/hiera.yaml'
 
 echo "All done!"
