@@ -26,26 +26,29 @@ At this step, it is assumed the machine is ready with the setup described in [ba
 
 This will be app-specific. For each app, a puppet manifest and a hiera data file is needed. The later one is used to store sensitive data (and thus should not be commited to git). Here's an example for an app that uses ruby 2.1.5 and a PostgreSQL database, and is deployed with Capistrano:
 
-    # manifest.pp
-    $data = hiera('common')
-    gb::ruby { 'ruby-2.1.5': }
+```puppet
+# manifest.pp
+$data = hiera('common')
+gb::ruby { 'ruby-2.1.5': }
 
-    gb::postgresql { 'app_name':
-      password => $data[app_name][db_password],
-    }
+gb::postgresql { 'app_name':
+  password => $data[app_name][db_password],
+}
 
-    gb::capistrano { 'app_name': }
+gb::capistrano { 'app_name': }
 
-    gb::nginx_conf { 'app_name':
-      path => 'config/nginx.production.conf',
-    }
+gb::nginx_conf { 'app_name':
+  path => 'config/nginx.production.conf',
+}
+```
 
-
-    # common.yaml
-    ---
-    common:
-      app_name:
-        db_password: "a-random-p4ssw0rd"
+```yaml
+# common.yaml
+---
+common:
+  app_name:
+    db_password: "a-random-p4ssw0rd"
+```
 
 The `setup/app` helper script  assists with getting these files on the server and provisioning it. No SSH needed at this stage:
 
