@@ -3,7 +3,7 @@
 set -e
 
 # read host
-read -p "server (i.e exampe.com): " host
+read -p "server (i.e example.com): " host
 host=deploy@${host}
 
 # read port
