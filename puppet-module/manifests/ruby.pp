@@ -1,6 +1,8 @@
 define gb::ruby {
 
-  include nodejs
+  class { 'nodejs':
+    version => stable,
+  }
 
   package { ['imagemagick', 'libmagickcore-dev', 'libmagickwand-dev']:
     ensure => installed
