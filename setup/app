@@ -15,7 +15,7 @@ read -p "manifest file path [default=./manifest.pp]: " manifest
 manifest=${manifest:-./manifest.pp}
 
 # hiera data
-read -p "secret hiera data [default=NONE]: " data
+read -p "secret hiera data [default=manifest.yaml]: " data
 
 hiera="
 ---
@@ -31,7 +31,7 @@ hiera="
   :datadir: '.'"
 
 scp -P $port $manifest $host:/tmp/manifest.pp
-if [ -n "$data" ]; then
+if [ -f "$data" ]; then
   scp -P $port $data     $host:/tmp/manifest.yaml
 fi
 ssh $host -p $port "echo \"$hiera\" > /tmp/hiera.yaml"
