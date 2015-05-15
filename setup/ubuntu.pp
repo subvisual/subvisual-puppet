@@ -9,7 +9,7 @@ include gb::apt_update
 include nginx
 
 # upstart config
-include gb::upstart
+# include gb::upstart
 
 # deploy directory
 file { '/var/www':
