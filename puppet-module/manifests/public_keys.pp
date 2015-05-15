@@ -10,28 +10,19 @@ define gb::public_keys {
   $script_src     = "puppet:///modules/gb/${script_name}"
   $auth_keys_file = "/home/${name}/.ssh/authorized_keys"
 
-  package { ['git', 'git-core']:
-    ensure => installed,
-    before => File[$script],
-  }
-
   # defaults
   File {
     owner => $name,
     group => $name,
   }
 
-  # install base scripts dir and ~/.ssh dir
-  file { [ $home, "${home}/scripts", "${home}/scripts/puppet", "${home}/.ssh"]:
-    ensure => directory,
-    before => File[$script],
-  }
 
   # copy generate-authorized_keys.rb
   file { $script:
-    ensure => present,
-    mode   => 755,
-    source => $script_src,
+    ensure  => present,
+    mode    => 755,
+    source  => $script_src,
+    require => File[$scripts_path],
   }
 
   # clone public-keys repo
@@ -41,6 +32,7 @@ define gb::public_keys {
     source    => $repo_url,
     revision  => 'master',
     notify    => Exec[$script],
+    require   => Package['git'],
   }
 
   # generate authorized_keys
