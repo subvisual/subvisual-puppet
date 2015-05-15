@@ -6,6 +6,8 @@ define gb::dotfiles {
   $script         = "${scripts_path}/${script_name}"
   $script_src     = "puppet:///modules/gb/${script_name}"
 
+  include rcm
+
   # defaults
   File {
     owner => $name,
@@ -23,7 +25,7 @@ define gb::dotfiles {
   # generate authorized_keys
   exec { $script:
     command     => $script,
-    refreshonly => true,
-    require     => File[$script],
+    require     => Exec['rcm'],
+    user        => $name,
   }
 }

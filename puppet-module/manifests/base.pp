@@ -21,8 +21,8 @@ define gb::base {
   include gb::apt_update
   include nginx
 
-  gb::user { $name }
-  gb::public_keys { $name }
-  gb::dotfiles { $name }
+  gb::user        { "${name}": }
+  gb::public_keys { "${name}": }
+  gb::dotfiles    { "${name}": }
 
 }
