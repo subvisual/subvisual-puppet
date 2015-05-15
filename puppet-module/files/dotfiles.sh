@@ -5,9 +5,9 @@ RCRC="$HOME/.rcrc"
 
 # install dotfiles repo
 if [ -d $REPO ]; then
-  git clone git@github.com:groupbuddies:dotfiles ~/.dotfiles
-else
   cd $REPO && git pull
+else
+  git clone https://github.com/groupbuddies/dotfiles ~/.dotfiles
 fi
 
 if [ -f $RCRC ]; then

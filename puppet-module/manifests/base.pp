@@ -8,7 +8,6 @@ define gb::base {
   # install base scripts dir and ~/.ssh dir
   file { [ $home, "${home}/scripts", "${home}/scripts/puppet", "${home}/.ssh"]:
     ensure => directory,
-    before => File[$script],
   }
 
   file{ '/var/www':

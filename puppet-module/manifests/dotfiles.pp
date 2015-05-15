@@ -6,7 +6,7 @@ define gb::dotfiles {
   $script         = "${scripts_path}/${script_name}"
   $script_src     = "puppet:///modules/gb/${script_name}"
 
-  include rcm
+  include gb::rcm
 
   # defaults
   File {

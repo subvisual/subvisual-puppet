@@ -27,11 +27,10 @@ echo "Installing puppet module groupbuddies-gb $GB_PUPPET_VERSION"
 puppet module install groupbuddies-gb --version $GB_PUPPET_VERSION > $OUT
 
 echo "Applying deploy.pp manifest"
-curl -s $MANIFEST > /tmp/manifest.pp
-puppet apply /tmp/manifest.pp > $OUT
+puppet apply -e "gb::base { 'deploy': }" > $OUT
 
-read -s -p "Enter a password for the deploy user: " deploy_password
-echo "deploy:${deploy_password}" | chpasswd
+read -s -p "Enter a password for the deploy user (blank for none): " deploy_password
+[ -z "$deploy_password" ] || echo "deploy:${deploy_password}" | chpasswd
 echo ""
 
 echo "Cleaning up"
