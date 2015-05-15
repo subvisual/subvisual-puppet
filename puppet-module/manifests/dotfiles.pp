@@ -27,5 +27,6 @@ define gb::dotfiles {
     command     => $script,
     require     => Exec['rcm'],
     user        => $name,
+    cwd         => "/home/$name"
   }
 }
