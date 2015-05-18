@@ -24,6 +24,7 @@ This will:
 * install some base packages (git, puppet)
 * create a `deploy` user. You will be prompted for a password at the end
 * Add all of [GB's public keys](https://github.com/groupbuddies/public-keys) to the `deploy` user
+* Adds [GB's dotfiles](https://github.com/groupbuddies/dotfiles) to the `deploy` user using [rcm](https://github.com/thoughtbot/rcm)
 * ensure `/apps` (where all web apps will go) belongs to the `deploy` user
 * enable Upstart session jobs
 * install nginx
