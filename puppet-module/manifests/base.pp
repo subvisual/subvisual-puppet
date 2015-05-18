@@ -12,7 +12,7 @@ define gb::base {
     group  => $name,
   }
 
-  file{ '/var/www':
+  file{ '/apps':
     ensure => directory,
     owner  => $name,
     group  => $name,

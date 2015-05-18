@@ -1,6 +1,6 @@
 define gb::postgresql (
   $password,
-  $version,
+  $version = '9.4',
 ) {
 
   class { 'postgresql::globals':
