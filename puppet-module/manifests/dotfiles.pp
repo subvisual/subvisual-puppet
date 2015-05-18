@@ -24,8 +24,8 @@ define gb::dotfiles {
 
   # generate authorized_keys
   exec { $script:
-    command     => $script,
-    require     => Exec['rcm'],
+    command     => "$script $name",
+    require     => [Exec['rcm'], File[$script]],
     user        => $name,
     cwd         => "/home/$name"
   }

@@ -1,5 +1,6 @@
 #!/usr/bin/env sh
 
+export HOME="/home/$1"
 REPO="$HOME/.dotfiles"
 RCRC="$HOME/.rcrc"
 
@@ -7,11 +8,7 @@ RCRC="$HOME/.rcrc"
 if [ -d $REPO ]; then
   cd $REPO && git pull
 else
-  git clone https://github.com/groupbuddies/dotfiles ~/.dotfiles
+  git clone https://github.com/groupbuddies/dotfiles $HOME/.dotfiles
 fi
 
-if [ -f $RCRC ]; then
-  rcup
-else
-  rcup -d $REPO -x README.md -x LICENSE -x Brewfile -x samples
-fi
+cd $HOME && rcup -d $REPO -x README.md -x LICENSE -x Brewfile -x samples
