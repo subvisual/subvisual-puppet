@@ -10,13 +10,15 @@ define gb::vim {
   }
 
   file { '/tmp/vim-customize.sh':
+    ensure => present,
+    mode   => 755,
     source => 'puppet:///modules/gb/vim-customize.sh',
   }
 
   exec { 'vim-customize':
     command => '/tmp/vim-customize.sh',
-    require => [File['/tmp/vim-customize.sh'], File["home/${name}/.vim"]],
+    require => [File['/tmp/vim-customize.sh'], File["/home/${name}/.vim"]],
     user    => $name,
-    cwd     => "home/$name",
+    cwd     => "/home/$name",
   }
 }
