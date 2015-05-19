@@ -1,4 +1,4 @@
-class gb::base {
+define gb::base {
   $home = "/home/${name}"
 
   package { ['htop', 'zsh', 'git', 'git-core']:

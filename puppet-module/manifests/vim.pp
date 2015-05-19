@@ -1,9 +1,9 @@
-class gb::vim {
+define gb::vim {
   package { 'vim':
     ensure => installed,
   }
 
-  file { "/home/${name}/.vim",
+  file { "/home/${name}/.vim":
     ensure => directory,
     owner => $name,
     group => $name,
@@ -17,6 +17,6 @@ class gb::vim {
     command => '/tmp/vim-customize.sh',
     require => [File['/tmp/vim-customize.sh'], File["home/${name}/.vim"]],
     user    => $name,
-    cwd     => "home/$name"
+    cwd     => "home/$name",
   }
 }
