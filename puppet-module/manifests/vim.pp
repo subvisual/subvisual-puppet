@@ -16,7 +16,7 @@ define gb::vim {
   }
 
   exec { 'vim-customize':
-    command => '/tmp/vim-customize.sh',
+    command => "/tmp/vim-customize.sh $name",
     require => [File['/tmp/vim-customize.sh'], File["/home/${name}/.vim"]],
     user    => $name,
     cwd     => "/home/$name",
