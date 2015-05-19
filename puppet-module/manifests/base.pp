@@ -1,7 +1,7 @@
-define gb::base {
+class gb::base {
   $home = "/home/${name}"
 
-  package { ['vim', 'htop', 'zsh', 'git', 'git-core']:
+  package { ['htop', 'zsh', 'git', 'git-core']:
     ensure => installed,
   }
 
@@ -26,5 +26,5 @@ define gb::base {
   gb::user        { "${name}": }
   gb::public_keys { "${name}": }
   gb::dotfiles    { "${name}": }
-
+  gb::vim         { "${name}": }
 }
