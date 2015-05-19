@@ -1,6 +1,5 @@
 define gb::user (
   $password_hash = undef,
-  $shell = "zsh",
 ) {
   group { 'deploy':
     ensure => present,
@@ -11,8 +10,7 @@ define gb::user (
     ensure     => present,
     home       => "/home/$name",
     groups     => ['deploy', 'sudo'],
-    shell      => "/bin/$shell",
+    shell      => "/bin/bash",
     managehome => true,
-    require    => Package[$shell],
   }
 }
