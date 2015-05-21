@@ -1,6 +1,6 @@
 {
   "name": "groupbuddies-gb",
-  "version": "0.20.0",
+  "version": "0.21.0",
   "author": "Miguel Palhas",
   "license": "MIT License",
   "summary": "Group Buddies base Puppet module",
@@ -12,7 +12,7 @@
   "dependencies": [
     { "name": "puppetlabs/apt",        "version_requirement": "1.x" },
     { "name": "jfryman/nginx",         "version_requirement": "0.x" },
-    { "name": "willdurand/nodejs",     "version_requirement": "1.8.5" },
+    { "name": "puppetlabs/nodejs",     "version_requirement": "0.8.0" },
     { "name": "puppetlabs/postgresql", "version_requirement": "4.3.0" },
     { "name": "saz/sudo",              "version_requirement": "3.x" },
     { "name": "puppetlabs/vcsrepo",    "version_requirement": "1.x" },
