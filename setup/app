@@ -16,6 +16,7 @@ manifest=${manifest:-./manifest.pp}
 
 # hiera data
 read -p "secret hiera data [default=manifest.yaml]: " data
+data=${data:-./manifest.yaml}
 
 hiera="
 ---
