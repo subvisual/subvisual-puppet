@@ -39,5 +39,8 @@ fi
 [ -z "$deploy_password" ] || echo "deploy:${deploy_password}" | chpasswd
 echo ""
 
-echo "Cleaning up"
-rm -rf /tmp/*
+# for some reason this errors when ran in vagrant
+if [ ! -d "/home/vagrant" ]; then
+  echo "Cleaning up"
+  rm -rf /tmp/*
+fi
