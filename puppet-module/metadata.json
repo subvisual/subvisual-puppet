@@ -1,6 +1,6 @@
 {
   "name": "groupbuddies-gb",
-  "version": "0.21.0",
+  "version": "0.22.0",
   "author": "Miguel Palhas",
   "license": "MIT License",
   "summary": "Group Buddies base Puppet module",
@@ -17,6 +17,7 @@
     { "name": "saz/sudo",              "version_requirement": "3.x" },
     { "name": "puppetlabs/vcsrepo",    "version_requirement": "1.x" },
     { "name": "maestrodev/rvm",        "version_requirement": "1.x" },
-    { "name": "thomasvandoren/redis",  "version_requirement": "0.10.0" }
+    { "name": "thomasvandoren/redis",  "version_requirement": "0.10.0" },
+    { "name": "puppetlabs/mongodb",    "version_requirement": "0.11.0" }
   ]
 }
