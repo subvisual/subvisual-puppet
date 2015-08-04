@@ -29,9 +29,12 @@ puppet module install groupbuddies-gb --version $GB_PUPPET_VERSION > $OUT
 echo "Applying deploy.pp manifest"
 puppet apply -e "gb::base { 'deploy': }" > $OUT
 
-read -s -p "Enter a password for the deploy user (blank for none): " deploy_password
-[ -z "$deploy_password" ] || echo "deploy:${deploy_password}" | chpasswd
-echo ""
+# if this is not a vagrant machine, ask for a deploy user password
+if [ ! -d "/home/vagrant" ]; then
+  read -s -p "Enter a password for the deploy user (blank for none): " deploy_password
+  [ -z "$deploy_password" ] || echo "deploy:${deploy_password}" | chpasswd
+  echo ""
+fi
 
 echo "Cleaning up"
 rm -rf /tmp/*
