@@ -32,9 +32,12 @@ puppet apply -e "gb::base { 'deploy': }" > $OUT
 # if this is not a vagrant machine, ask for a deploy user password
 if [ ! -d "/home/vagrant" ]; then
   read -s -p "Enter a password for the deploy user (blank for none): " deploy_password
-  [ -z "$deploy_password" ] || echo "deploy:${deploy_password}" | chpasswd
-  echo ""
-fi
+else
+  deploy_password="vagrant"
+end
+
+[ -z "$deploy_password" ] || echo "deploy:${deploy_password}" | chpasswd
+echo ""
 
 echo "Cleaning up"
 rm -rf /tmp/*
