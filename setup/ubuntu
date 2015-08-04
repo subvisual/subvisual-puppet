@@ -34,7 +34,7 @@ if [ ! -d "/home/vagrant" ]; then
   read -s -p "Enter a password for the deploy user (blank for none): " deploy_password
 else
   deploy_password="vagrant"
-end
+fi
 
 [ -z "$deploy_password" ] || echo "deploy:${deploy_password}" | chpasswd
 echo ""
