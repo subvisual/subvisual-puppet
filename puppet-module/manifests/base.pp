@@ -1,7 +1,7 @@
 define gb::base {
   $home = "/home/${name}"
 
-  package { ['htop', 'git', 'git-core']:
+  package { ['htop', 'git', 'git-core', 'build-essential']:
     ensure => installed,
   }
 
