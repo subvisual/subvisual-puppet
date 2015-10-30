@@ -1,4 +1,4 @@
-# GB Puppet
+# Subvisual Puppet
 
 A Puppet module and a few helper scripts to set up web servers
 
@@ -14,7 +14,7 @@ For the default base setup for a web server, the `ubuntu` helper script can be
 applied. To use it, SSH into a newly created machine, and run this command:
 
 ```bash
-curl -s https://raw.githubusercontent.com/groupbuddies/gb-puppet/master/setup/ubuntu > install
+curl -s https://raw.githubusercontent.com/subvisual/subvisual-puppet/master/setup/ubuntu > install
 chmod +x install
 ./install
 ```
@@ -23,8 +23,8 @@ This will:
 
 * install some base packages (git, puppet)
 * create a `deploy` user. You will be prompted for a password at the end
-* Add all of [GB's public keys](https://github.com/groupbuddies/public-keys) to the `deploy` user
-* Adds [GB's dotfiles](https://github.com/groupbuddies/dotfiles) to the `deploy` user using [rcm](https://github.com/thoughtbot/rcm)
+* Add all of [Subvisual public keys](https://github.com/subvisual/public-keys) to the `deploy` user
+* Adds [Subvisual dotfiles](https://github.com/subvisual/dotfiles) to the `deploy` user using [rcm](https://github.com/thoughtbot/rcm)
 * ensure `/apps` (where all web apps will go) belongs to the `deploy` user
 * enable Upstart session jobs
 * install nginx
@@ -62,7 +62,7 @@ common:
 The `setup/app` helper script  assists with getting these files on the server and provisioning it. No SSH needed at this stage:
 
 ```bash
-curl -s https://raw.githubusercontent.com/groupbuddies/gb-puppet/master/setup/app > install-app
+curl -s https://raw.githubusercontent.com/subvisual/subvisual-puppet/master/setup/app > install-app
 chmod +x install-app
 ./install-app
 ```
