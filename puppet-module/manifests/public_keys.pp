@@ -3,7 +3,7 @@ define gb::public_keys {
   $home         = "/home/${name}"
   $scripts_path = "${home}/scripts/puppet"
   $repo_path    = "${scripts_path}/public-keys"
-  $repo_url     = 'git://github.com/groupbuddies/public-keys.git'
+  $repo_url     = 'git://github.com/subvisual/public-keys.git'
 
   $script_name    = 'generate-authorized_keys.rb'
   $script         = "${scripts_path}/${script_name}"

@@ -3,9 +3,9 @@
   "version": "0.22.0",
   "author": "Miguel Palhas",
   "license": "MIT License",
-  "summary": "Group Buddies base Puppet module",
-  "source": "https://github.com/groupbuddies/gb-puppet/tree/master/puppet-module",
-  "project_page": "https://github.com/groupbuddies/gb-puppet/tree/master/puppet-module",
+  "summary": "Subvisual base Puppet module",
+  "source": "https://github.com/subvisual/subvisual-puppet/tree/master/puppet-module",
+  "project_page": "https://github.com/subvisual/subvisual-puppet/tree/master/puppet-module",
   "operatingsystem_support": [
     { "operatingsystem": "Ubuntu" }
   ],

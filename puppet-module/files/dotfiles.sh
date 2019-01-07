@@ -8,7 +8,7 @@ RCRC="$HOME/.rcrc"
 if [ -d $REPO ]; then
   cd $REPO && git pull
 else
-  git clone https://github.com/groupbuddies/dotfiles $HOME/.dotfiles
+  git clone https://github.com/subvisual/dotfiles $HOME/.dotfiles
 fi
 
 cd $HOME && rcup -d $REPO -x README.md -x LICENSE -x Brewfile -x samples
